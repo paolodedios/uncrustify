@@ -7,6 +7,7 @@
  */
 #include "newlines/class_colon_pos.h"
 
+#include "align/span_num_resolve.h"
 #include "align/stack.h"
 #include "chunk.h"
 #include "keywords.h"
@@ -57,8 +58,14 @@ void newlines_class_colon_pos(E_Token tok)
    size_t acv_span = options::align_constr_value_span();
 
    log_rule_B("align_constr_value_span");
-   bool       with_acv = (acv_span > 0) && language_is_set(lang_flag_e::LANG_CPP);
-   AlignStack constructorValue;    // ABC_Member(abc_value)
+   bool with_acv = (tok == E_Token::CT_CONSTR_COLON)
+                   && (acv_span > 0)
+                   && language_is_set(lang_flag_e::LANG_CPP);
+   AlignStack     constructorValue; // ABC_Member(abc_value)
+
+   LineSkipConfig acv_skip_cfg    = {};
+   LineSkipConfig acv_skip_budget = {};
+   Chunk          *prev_acv_chunk = Chunk::NullChunkPtr;
 
    if (with_acv)
    {
@@ -70,6 +77,15 @@ void newlines_class_colon_pos(E_Token tok)
       constructorValue.m_gap         = acv_gap;
       constructorValue.m_right_align = !options::align_on_tabstop();
       log_rule_B("align_on_tabstop");
+
+      log_rule_B("align_constr_value_span_num_empty_lines");
+      log_rule_B("align_constr_value_span_num_pp_lines");
+      log_rule_B("align_constr_value_span_num_cmt_lines");
+      acv_skip_cfg = resolve_span_num_config(
+         options::align_constr_value_span_num_empty_lines(),
+         options::align_constr_value_span_num_pp_lines(),
+         options::align_constr_value_span_num_cmt_lines());
+      acv_skip_budget = acv_skip_cfg;
    }
    Chunk *ccolon = Chunk::NullChunkPtr;
 
@@ -103,8 +119,23 @@ void newlines_class_colon_pos(E_Token tok)
                LOG_FMT(LBLANKD, "%s(%d): paren_vor_value orig line is %zu, orig col is %zu, text '%s', type is %s\n",
                        __func__, __LINE__, paren_vor_value->GetOrigLine(), paren_vor_value->GetOrigCol(),
                        paren_vor_value->GetLogText(), get_token_name(paren_vor_value->GetType()));
-               constructorValue.NewLines(paren_vor_value->GetNlCount());
+               size_t nl_count = 0;
+
+               for (Chunk *tmp = prev_acv_chunk->GetNext();
+                    tmp->IsNotNullChunk() && tmp != paren_vor_value;
+                    tmp = tmp->GetNext())
+               {
+                  if (  tmp->IsNewline()
+                     || tmp->IsComment())
+                  {
+                     nl_count += tmp->GetNlCountFiltered(acv_skip_budget);
+                  }
+               }
+
+               constructorValue.NewLines(nl_count);
                constructorValue.Add(paren_vor_value);
+               prev_acv_chunk  = paren_vor_value;
+               acv_skip_budget = acv_skip_cfg;
             }
          }
 
@@ -166,6 +197,8 @@ void newlines_class_colon_pos(E_Token tok)
             if (with_acv)
             {
                constructorValue.End();
+               prev_acv_chunk  = Chunk::NullChunkPtr;;
+               acv_skip_budget = acv_skip_cfg;
             }
             continue;
          }
@@ -183,8 +216,23 @@ void newlines_class_colon_pos(E_Token tok)
                LOG_FMT(LBLANKD, "%s(%d): paren_vor_value orig line is %zu, orig col is %zu, text '%s', type is %s\n",
                        __func__, __LINE__, paren_vor_value->GetOrigLine(), paren_vor_value->GetOrigCol(),
                        paren_vor_value->GetLogText(), get_token_name(paren_vor_value->GetType()));
-               constructorValue.NewLines(paren_vor_value->GetNlCount());
+               size_t nl_count = 0;
+
+               for (Chunk *tmp = prev_acv_chunk->GetNext();
+                    tmp->IsNotNullChunk() && tmp != paren_vor_value;
+                    tmp = tmp->GetNext())
+               {
+                  if (  tmp->IsNewline()
+                     || tmp->IsComment())
+                  {
+                     nl_count += tmp->GetNlCountFiltered(acv_skip_budget);
+                  }
+               }
+
+               constructorValue.NewLines(nl_count);
                constructorValue.Add(paren_vor_value);
+               prev_acv_chunk  = paren_vor_value;
+               acv_skip_budget = acv_skip_cfg;
             }
 
             if (ncia & IARF_ADD)                   // nl_class_init_args, nl_constr_init_args:
