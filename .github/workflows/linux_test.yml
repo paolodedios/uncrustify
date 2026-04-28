@@ -24,9 +24,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: Set up Ninja
-        uses: seanmiddleditch/gha-setup-ninja@master
-
       - name: Configure CMake
         env:
           BADGE: linux
