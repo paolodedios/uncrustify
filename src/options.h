@@ -3405,6 +3405,27 @@ align_constr_value_thresh;
 extern BoundedOption<unsigned, 0, 16>
 align_constr_value_gap;
 
+// Maximum budget of empty lines to skip for align_constr_value_span.
+//  -1: Use the global_span_num_empty_lines budget (default).
+//   0: No budget (don't skip any empty lines).
+//  >0: Skip up to this many empty lines between candidates.
+extern BoundedOption<signed, -1, 5000>
+align_constr_value_span_num_empty_lines; // = -1
+
+// Maximum budget of preprocessor lines to skip for align_constr_value_span.
+//  -1: Use the global_span_num_pp_lines budget (default).
+//   0: No budget (don't skip any preprocessor lines).
+//  >0: Skip up to this many preprocessor lines between candidates.
+extern BoundedOption<signed, -1, 5000>
+align_constr_value_span_num_pp_lines; // = -1
+
+// Maximum budget of comment lines to skip for align_constr_value_span.
+//  -1: Use the global_span_num_cmt_lines budget (default).
+//   0: No budget (don't skip any comment lines).
+//  >0: Skip up to this many comment lines between candidates.
+extern BoundedOption<signed, -1, 5000>
+align_constr_value_span_num_cmt_lines; // = -1
+
 // Whether to align parameters in single-line functions that have the same
 // name. The function names must already be aligned with each other.
 extern Option<bool>
