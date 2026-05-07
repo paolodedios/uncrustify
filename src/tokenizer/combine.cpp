@@ -5656,15 +5656,6 @@ static void handle_oc_property_decl(Chunk *os)
          while (  next->IsNotNullChunk()
                && next->IsNot(E_Token::CT_PAREN_CLOSE))
          {
-            std::vector<ChunkGroup> class_chunks;       // class
-            std::vector<ChunkGroup> thread_chunks;      // atomic, nonatomic
-            std::vector<ChunkGroup> readwrite_chunks;   // readwrite, readonly
-            std::vector<ChunkGroup> ref_chunks;         // retain, copy, assign, weak, strong, unsafe_unretained
-            std::vector<ChunkGroup> getter_chunks;      // getter
-            std::vector<ChunkGroup> setter_chunks;      // setter
-            std::vector<ChunkGroup> nullability_chunks; // nonnull, nullable, null_unspecified, null_resettable
-            std::vector<ChunkGroup> other_chunks;       // any words other than above
-
             if (next->Is(E_Token::CT_OC_PROPERTY_ATTR))
             {
                if (  next->IsString("atomic")
