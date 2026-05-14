@@ -1016,7 +1016,7 @@ def main(args):
 
     # misc error_tests
     print("Test error_tests ...")
-    error_tests = ["I-842", "unmatched_close_pp"]
+    error_tests = ["I-842", "unmatched_close_pp", "truncated-utf8-bom"]
     for test in error_tests:
         return_value = check_uncrustify_output(
                 uncr_bin,
