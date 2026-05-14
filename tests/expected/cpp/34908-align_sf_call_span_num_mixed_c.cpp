@@ -1,3 +1,11 @@
+/* This file has 2 copies that should remain the same:
+ *   - input/c/align_sf_call_span_num_mixed.c
+ *   - input/cpp/align_sf_call_span_num_mixed_c.cpp
+ * It is a copy instead of a file in a 'common' directory so
+ * it keeps expected outputs into separate directories.
+ * If you modify this file, please modify the other.
+ * (See https://github.com/uncrustify/uncrustify/pull/4714)
+ */
 void test_empty_lines(void)
 {
 	align_prams(param1 + param1, param2, param3);

@@ -731,6 +731,13 @@
 10239  common/global_align_span_typedef_num_lines-2.cfg  c/align_typedef_span_num_mixed.c
 10240  common/global_align_span_typedef_num_lines-3.cfg  c/align_typedef_span_num_mixed.c
 
+# For the following tests, the input file has 2 copies that should remain the same:
+#    - input/c/align_sf_call_span_num_mixed.c
+#    - input/cpp/align_sf_call_span_num_mixed_c.cpp
+# It is a copy instead of a file in a 'common' directory so
+# it keeps expected outputs into separate directories.
+# If you modify this file, please modify the other.
+# (See https://github.com/uncrustify/uncrustify/pull/4714)
 10241  common/align_sf_call_span_num_empty-1.cfg        c/align_sf_call_span_num_mixed.c
 10242  common/align_sf_call_span_num_empty-2.cfg        c/align_sf_call_span_num_mixed.c
 10243  common/align_sf_call_span_num_empty-3.cfg        c/align_sf_call_span_num_mixed.c
