@@ -1605,3 +1605,48 @@
 34886  common/global_align_span_constr_value_num_lines-1.cfg cpp/align_constr_value_span_num_mixed.cpp
 34887  common/global_align_span_constr_value_num_lines-2.cfg cpp/align_constr_value_span_num_mixed.cpp
 34888  common/global_align_span_constr_value_num_lines-3.cfg cpp/align_constr_value_span_num_mixed.cpp
+
+34889  common/align_sf_call_span_num_empty-1.cfg            cpp/align_sf_call_span_num_mixed.cpp
+34890  common/align_sf_call_span_num_empty-2.cfg            cpp/align_sf_call_span_num_mixed.cpp
+34891  common/align_sf_call_span_num_empty-3.cfg            cpp/align_sf_call_span_num_mixed.cpp
+34892  common/align_sf_call_span_num_pp-1.cfg               cpp/align_sf_call_span_num_mixed.cpp
+34893  common/align_sf_call_span_num_pp-2.cfg               cpp/align_sf_call_span_num_mixed.cpp
+34894  common/align_sf_call_span_num_pp-3.cfg               cpp/align_sf_call_span_num_mixed.cpp
+34895  common/align_sf_call_span_num_cmt-1.cfg              cpp/align_sf_call_span_num_mixed.cpp
+34896  common/align_sf_call_span_num_cmt-2.cfg              cpp/align_sf_call_span_num_mixed.cpp
+34897  common/align_sf_call_span_num_cmt-3.cfg              cpp/align_sf_call_span_num_mixed.cpp
+34898  common/align_sf_call_span_num_mixed-1.cfg            cpp/align_sf_call_span_num_mixed.cpp
+34899  common/align_sf_call_span_num_mixed-2.cfg            cpp/align_sf_call_span_num_mixed.cpp
+34900  common/align_sf_call_span_num_mixed-3.cfg            cpp/align_sf_call_span_num_mixed.cpp
+34901  common/align_sf_call_span_num_mixed-4.cfg            cpp/align_sf_call_span_num_mixed.cpp
+34902  common/align_sf_call_span_num_mixed-5.cfg            cpp/align_sf_call_span_num_mixed.cpp
+34903  common/align_sf_call_span_num_mixed-6.cfg            cpp/align_sf_call_span_num_mixed.cpp
+34904  common/global_align_span_sf_call_num_lines-1.cfg     cpp/align_sf_call_span_num_mixed.cpp
+34905  common/global_align_span_sf_call_num_lines-2.cfg     cpp/align_sf_call_span_num_mixed.cpp
+34906  common/global_align_span_sf_call_num_lines-3.cfg     cpp/align_sf_call_span_num_mixed.cpp
+
+# For the following tests, the input file has 2 copies that should remain the same:
+#    - input/c/align_sf_call_span_num_mixed.c
+#    - input/cpp/align_sf_call_span_num_mixed_c.cpp
+# It is a copy instead of a file in a 'common' directory so
+# it keeps expected outputs into separate directories.
+# If you modify this file, please modify the other.
+# (See https://github.com/uncrustify/uncrustify/pull/4714)
+34907  common/align_sf_call_span_num_empty-1.cfg            cpp/align_sf_call_span_num_mixed_c.cpp
+34908  common/align_sf_call_span_num_empty-2.cfg            cpp/align_sf_call_span_num_mixed_c.cpp
+34909  common/align_sf_call_span_num_empty-3.cfg            cpp/align_sf_call_span_num_mixed_c.cpp
+34910  common/align_sf_call_span_num_pp-1.cfg               cpp/align_sf_call_span_num_mixed_c.cpp
+34911  common/align_sf_call_span_num_pp-2.cfg               cpp/align_sf_call_span_num_mixed_c.cpp
+34912  common/align_sf_call_span_num_pp-3.cfg               cpp/align_sf_call_span_num_mixed_c.cpp
+34913  common/align_sf_call_span_num_cmt-1.cfg              cpp/align_sf_call_span_num_mixed_c.cpp
+34914  common/align_sf_call_span_num_cmt-2.cfg              cpp/align_sf_call_span_num_mixed_c.cpp
+34915  common/align_sf_call_span_num_cmt-3.cfg              cpp/align_sf_call_span_num_mixed_c.cpp
+34916  common/align_sf_call_span_num_mixed-1.cfg            cpp/align_sf_call_span_num_mixed_c.cpp
+34917  common/align_sf_call_span_num_mixed-2.cfg            cpp/align_sf_call_span_num_mixed_c.cpp
+34918  common/align_sf_call_span_num_mixed-3.cfg            cpp/align_sf_call_span_num_mixed_c.cpp
+34919  common/align_sf_call_span_num_mixed-4.cfg            cpp/align_sf_call_span_num_mixed_c.cpp
+34920  common/align_sf_call_span_num_mixed-5.cfg            cpp/align_sf_call_span_num_mixed_c.cpp
+34921  common/align_sf_call_span_num_mixed-6.cfg            cpp/align_sf_call_span_num_mixed_c.cpp
+34922  common/global_align_span_sf_call_num_lines-1.cfg     cpp/align_sf_call_span_num_mixed_c.cpp
+34923  common/global_align_span_sf_call_num_lines-2.cfg     cpp/align_sf_call_span_num_mixed_c.cpp
+34924  common/global_align_span_sf_call_num_lines-3.cfg     cpp/align_sf_call_span_num_mixed_c.cpp
